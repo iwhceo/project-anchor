@@ -1,6 +1,6 @@
 {
   "name": "project-anchor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Persistent memory and Project Brain for Claude Code. Five skills, zero forgetting, fully local.",
   "author": "DMUX",
   "license": "MIT",

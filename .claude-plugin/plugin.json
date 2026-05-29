@@ -1,0 +1,47 @@
+{
+  "name": "project-anchor",
+  "version": "0.2.0",
+  "description": "Persistent memory and Project Brain for Claude Code. Five skills (init, dna, compressor, recall, core), deterministic compression, semantic recall, fully local SQLite storage.",
+  "author": {
+    "name": "DMUX",
+    "url": "https://github.com/iwhceo"
+  },
+  "homepage": "https://github.com/iwhceo/project-anchor",
+  "repository": "https://github.com/iwhceo/project-anchor",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "context",
+    "session",
+    "project-management",
+    "recall",
+    "semantic-search"
+  ],
+  "skills": "./skills/",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-stop.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

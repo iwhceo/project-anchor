@@ -10,7 +10,7 @@
 
 <p align="center">
 <img alt="license" src="https://img.shields.io/badge/license-MIT-blue">
-<img alt="version" src="https://img.shields.io/badge/version-0.1.0-green">
+<img alt="version" src="https://img.shields.io/badge/version-0.2.0-green">
 <img alt="install" src="https://img.shields.io/badge/install-npx%20project--anchor-orange">
 <img alt="skills" src="https://img.shields.io/badge/skills-5-purple">
 <img alt="local" src="https://img.shields.io/badge/local--first-100%25-success">
@@ -103,6 +103,26 @@ Commands: `/recall <query>` `/lessons [topic]`
 
 ## Install
 
+### Recommended — Claude Code plugin marketplace (v0.2.0+)
+
+```text
+/plugin marketplace add iwhceo/project-anchor
+/plugin install project-anchor@zefyr-anchor
+```
+
+The five skills appear automatically in the `Skill` tool registry, and the SessionStart/Stop hooks are wired by Claude Code itself — `~/.claude/settings.json` is **not** touched.
+
+**Updating** (whenever a new version is pushed to GitHub):
+
+```text
+/plugin marketplace update zefyr-anchor
+/plugin update project-anchor
+```
+
+Claude Code reads `.claude-plugin/marketplace.json` at session start and shows an "update available" hint when the remote `version` is newer than the installed one. See [`CHANGELOG.md`](CHANGELOG.md) for what changed.
+
+### Legacy — npm CLI / bash one-liner (still supported)
+
 ```bash
 npx project-anchor install
 ```
@@ -120,7 +140,7 @@ npm install -g project-anchor
 project-anchor install
 ```
 
-Verify:
+Verify (works for both install paths):
 
 ```bash
 project-anchor doctor
@@ -274,8 +294,8 @@ See [`docs/PAPER.md`](docs/PAPER.md) for the full design rationale.
 
 ## Roadmap
 
-- **v0.1.0** (current): skills, CLI, hooks, embeddings, recall, README, PAPER.
-- **v0.2.0**: `doctor` polish, FAQ expansion, contributor guide.
+- **v0.1.0**: skills, CLI, hooks, embeddings, recall, README, PAPER.
+- **v0.2.0** (current): Claude Code plugin marketplace (`zefyr-anchor`), in-IDE `/plugin install`+`/plugin update`, hooks resolved via `${CLAUDE_PLUGIN_ROOT}`.
 - **v1.0.0**: API freeze, semver guarantees, npm publish.
 - **v1.1.0**: optional local web dashboard via `project-anchor dashboard`.
 - **v1.2.0**: `sqlite-vec` ANN index for projects above 1000 sessions.
@@ -294,7 +314,10 @@ No. SQLite is embedded, shipped via `better-sqlite3` as a native npm package. No
 No, beyond the one-time model download from Hugging Face on first `recall`.
 
 **What if I have other Claude Code hooks installed?**
-ProjectAnchor merges into `~/.claude/settings.json` non-destructively, marked with `_anchor: true`. Uninstall removes only those entries.
+On the plugin install path (v0.2.0+), Claude Code wires the hooks itself; `~/.claude/settings.json` is not touched. On the legacy install path, ProjectAnchor merges into `~/.claude/settings.json` non-destructively, marked with `_anchor: true`. Uninstall removes only those entries.
+
+**How do I get update notifications?**
+With the plugin install path, Claude Code automatically detects when a new `version` is published to GitHub and shows an "update available" hint at session start. Run `/plugin marketplace update zefyr-anchor` followed by `/plugin update project-anchor` to upgrade. The [`CHANGELOG.md`](CHANGELOG.md) lists what changed.
 
 **How big is the storage footprint?**
 Per project: about 30 KB plus 1.5 KB per compressed session. Across all projects, the ONNX model cache is the largest item at around 25 MB.

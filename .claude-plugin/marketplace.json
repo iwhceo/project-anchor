@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "zefyr-anchor",
+  "description": "Project Anchor: persistent project memory and Project Brain for Claude Code. Five coordinated skills, deterministic compression, semantic recall, fully local storage.",
+  "owner": {
+    "name": "DMUX",
+    "url": "https://github.com/iwhceo"
+  },
+  "plugins": [
+    {
+      "name": "project-anchor",
+      "description": "Persistent memory and Project Brain for Claude Code. Bootstrap project DNA, compress sessions deterministically, recall context via semantic search.",
+      "source": "./",
+      "category": "productivity",
+      "version": "0.2.0",
+      "keywords": ["memory", "context", "session", "project-management", "recall"]
+    }
+  ]
+}
