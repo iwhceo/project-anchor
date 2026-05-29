@@ -1,0 +1,57 @@
+{
+  "name": "project-anchor",
+  "version": "0.1.0",
+  "description": "Persistent memory and Project Brain for Claude Code. Five skills, zero forgetting, fully local.",
+  "author": "DMUX",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "project-anchor": "./runtime/dist/cli.js"
+  },
+  "files": [
+    "runtime/dist",
+    "skills",
+    "hooks",
+    "install.sh",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p runtime/tsconfig.json",
+    "dev": "tsx runtime/src/cli.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@xenova/transformers": "^2.17.2",
+    "better-sqlite3": "^11.3.0",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^22.7.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  },
+  "keywords": [
+    "memory",
+    "persistent-memory",
+    "project-brain",
+    "developer-tools",
+    "cli",
+    "skill-pack"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iwhceo/project-anchor"
+  },
+  "homepage": "https://github.com/iwhceo/project-anchor#readme",
+  "bugs": {
+    "url": "https://github.com/iwhceo/project-anchor/issues"
+  }
+}
